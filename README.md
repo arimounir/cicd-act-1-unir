@@ -9,5 +9,10 @@ Los comandos del Makefile funcionarán en Linux y MacOS. En caso de usar Windows
 ## Ejecución
 
 python3 main.py <filename> <dup>
-  filename: **ruta** al fichero que contiene la lista de palabras, una por línea
-  dup: **yes|no**, yes para eliminar palabras duplicadas, no para mantener la lista
+filename: **ruta** al fichero que contiene la lista de palabras, una por línea
+dup: **yes|no**, yes para eliminar palabras duplicadas, no para mantener la lista
+
+### Integrantes Equipo 2 - Grupo 5:
+
+- Moguillansky Ariel
+- Benitez Guayuan Marcos
