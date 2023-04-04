@@ -5,6 +5,8 @@ Organization: UNIR
 
 import os
 import sys
+import re
+from unicodedata import normalize
 
 DEFAULT_FILENAME = "words.txt"
 DEFAULT_DUPLICATES = False
@@ -15,6 +17,20 @@ def sort_list(items, ascending=True):
         raise RuntimeError(f"No puede ordenar {type(items)}")
 
     return sorted(items, reverse=(not ascending))
+	
+
+def eliminar_diacriticos(cadena):
+	# NFD y eliminar diacriticos
+	cadena = re.sub(
+        r"([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+", r"\1", 
+        normalize( "NFD", cadena), 0, re.I
+    )
+	
+	# -> NFC
+	cadena = normalize('NFC', cadena)
+	
+	return cadena
+	
 
 
 def remove_duplicates_from_list(items):
@@ -38,7 +54,7 @@ if __name__ == "__main__":
         word_list = []
         with open(file_path, "r") as file:
             for line in file:
-                word_list.append(line.strip())
+                word_list.append(eliminar_diacriticos(line.strip()))
     else:
         print(f"El fichero {filename} no existe")
         word_list = ["ravenclaw", "gryffindor", "slytherin", "hufflepuff"]
